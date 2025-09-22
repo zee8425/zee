@@ -1,1 +1,640 @@
-zee
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zee Store - Platform E-commerce Terpercaya</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #e0f7fa 0%, #e3f2fd 25%, #f3e5f5 50%, #ede7f6 75%, #e8eaf6 100%);
+        }
+
+        /* Header Styles */
+        header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .logo span:first-child {
+            color: #3b82f6;
+        }
+
+        .logo span:last-child {
+            color: #8b5cf6;
+        }
+
+        nav a {
+            color: #374151;
+            text-decoration: none;
+            margin: 0 1rem;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #3b82f6;
+        }
+
+        /* Form Styles */
+        .auth-form {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .auth-input {
+            padding: 0.5rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.375rem;
+            width: 120px;
+        }
+
+        /* Button Styles */
+        .btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 0.375rem;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+
+        .btn-primary {
+            background: #3b82f6;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #2563eb;
+        }
+
+        .btn-success {
+            background: #10b981;
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #059669;
+        }
+
+        .btn-danger {
+            background: #ef4444;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #dc2626;
+        }
+
+        .btn-secondary {
+            background: #6b7280;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #4b5563;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 3rem 0;
+        }
+
+        .hero h2 {
+            font-size: 2.5rem;
+            color: #1f2937;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #6b7280;
+        }
+
+        /* Product Form */
+        .product-form-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .product-form-container h3 {
+            font-size: 1.5rem;
+            color: #1f2937;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #374151;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.375rem;
+            font-size: 1rem;
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .image-upload {
+            border: 2px dashed #d1d5db;
+            border-radius: 0.375rem;
+            padding: 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: border-color 0.3s;
+        }
+
+        .image-upload:hover {
+            border-color: #3b82f6;
+        }
+
+        .image-preview {
+            max-width: 200px;
+            max-height: 150px;
+            margin: 1rem auto;
+            display: block;
+            border-radius: 0.375rem;
+            object-fit: contain;
+        }
+
+        /* Products Grid - UKURAN GAMBAR DIPERBAIKI */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        /* UKURAN GAMBAR PRODUK YANG NORMAL */
+        .product-image {
+            width: 100%;
+            height: 180px;
+            object-fit: contain;
+            padding: 1rem;
+            background: #f8fafc;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-price {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #3b82f6;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-description {
+            color: #6b7280;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+            font-size: 0.9rem;
+        }
+
+        .product-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Footer */
+        footer {
+            background: #1f2937;
+            color: white;
+            padding: 3rem 0;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            text-align: center;
+        }
+
+        /* Utilities */
+        .hidden {
+            display: none;
+        }
+
+        .flex {
+            display: flex;
+        }
+
+        .gap-4 {
+            gap: 1rem;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            nav {
+                margin-top: 1rem;
+            }
+            
+            .auth-form {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .auth-input {
+                width: 100%;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .product-image {
+                height: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <span>Zee</span> <span>Store</span>
+            </div>
+            
+            <nav class="hidden-mobile">
+                <a href="#">Beranda</a>
+                <a href="#">Kategori</a>
+                <a href="#">Promo</a>
+            </nav>
+            
+            <div id="auth-section">
+                <form id="login-form" class="auth-form">
+                    <input type="text" id="username" class="auth-input" placeholder="Username" required>
+                    <input type="password" id="password" class="auth-input" placeholder="Password" required>
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </form>
+                
+                <div id="admin-panel" class="hidden">
+                    <button onclick="showAddProductForm()" class="btn btn-success">+ Tambah Produk</button>
+                    <button onclick="logout()" class="btn btn-danger">Logout</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <h2>Selamat Datang di Zee Store</h2>
+            <p>Temukan produk terbaik dengan harga terbaik</p>
+        </section>
+
+        <!-- Add Product Form -->
+        <section id="add-product-form" class="product-form-container hidden">
+            <h3>Tambah Produk Baru</h3>
+            
+            <form id="product-form">
+                <!-- Image Upload -->
+                <div class="form-group">
+                    <label>Upload Foto Produk</label>
+                    <div class="image-upload" onclick="document.getElementById('product-image').click()">
+                        <img id="image-preview" class="image-preview hidden" alt="Preview gambar produk">
+                        <div id="upload-placeholder">
+                            <p>Klik untuk memilih gambar</p>
+                            <p style="font-size: 0.8rem; color: #6b7280; margin-top: 0.5rem;">
+                                Format: JPG, PNG, maksimum 5MB
+                            </p>
+                        </div>
+                    </div>
+                    <input type="file" id="product-image" accept="image/*" class="hidden" onchange="handleImageUpload(event)">
+                </div>
+
+                <!-- Product Details -->
+                <div class="form-group">
+                    <label for="product-name">Nama Produk</label>
+                    <input type="text" id="product-name" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="product-price">Harga (Rp)</label>
+                    <input type="number" id="product-price" class="form-control" required min="0">
+                </div>
+
+                <div class="form-group">
+                    <label for="product-description">Deskripsi</label>
+                    <textarea id="product-description" class="form-control" required></textarea>
+                </div>
+
+                <div class="flex gap-4">
+                    <button type="button" onclick="hideAddProductForm()" class="btn btn-secondary">Batal</button>
+                    <button type="submit" class="btn btn-primary">Simpan Produk</button>
+                </div>
+            </form>
+        </section>
+
+        <!-- Products Section -->
+        <section>
+            <h3 class="text-center">Produk Terbaru</h3>
+            
+            <div id="products-container" class="products-grid">
+                <!-- Products will be dynamically added here -->
+                <div class="product-card">
+                    <img src="data:image/jpeg;base64,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" 
+                         alt="Smartphone modern dengan desain elegan dan layar lebar" class="product-image">
+                    <div class="product-info">
+                        <h4 class="product-name">Smartphone X Pro</h4>
+                        <p class="product-price">Rp 2.500.000</p>
+                        <p class="product-description">Smartphone flagship dengan kamera profesional 108MP, RAM 12GB, dan baterai tahan lama</p>
+                        <div class="product-actions">
+                            <button class="btn btn-primary">Beli Sekarang</button>
+                            <button class="btn btn-danger hidden admin-only" onclick="deleteProduct(1)">Hapus</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcR7zOHIy8GLU-s9eJKtL1IJo8LAAlW28ZrsxshGtPOoTnwXABUIZR8Lbk1B246XjHy6QIqKsEereExSkzsfcKBtwh4sHcvP1NhEW2g6jNsGl9UMbE-qwi0XkGNwx8bUYrkMfqvqlKp3QA&usqp=CAc" 
+                         alt="Headphone nirkabel premium dengan desain modern" class="product-image">
+                    <div class="product-info">
+                        <h4 class="product-name">Headphone Wireless</h4>
+                        <p class="product-price">Rp 450.000</p>
+                        <p class="product-description">Headphone nirkabel dengan fitur noise cancellation aktif dan koneksi Bluetooth 5.0</p>
+                        <div class="product-actions">
+                            <button class="btn btn-primary">Beli Sekarang</button>
+                            <button class="btn btn-danger hidden admin-only" onclick="deleteProduct(2)">Hapus</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="data:image/jpeg;base64,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" 
+                         alt="Laptop gaming dengan keyboard RGB dan spesifikasi tinggi" class="product-image">
+                    <div class="product-info">
+                        <h4 class="product-name">Laptop Gaming Pro</h4>
+                        <p class="product-price">Rp 12.000.000</p>
+                        <p class="product-description">Laptop gaming dengan GPU RTX 4060, processor Intel i7, dan layar 144Hz</p>
+                        <div class="product-actions">
+                            <button class="btn btn-primary">Beli Sekarang</button>
+                            <button class="btn btn-danger hidden admin-only" onclick="deleteProduct(3)">Hapus</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <h4>Zee Store</h4>
+            <p>Platform e-commerce terpercaya untuk semua kebutuhan Anda</p>
+            <p style="margin-top: 2rem;">&copy; 2024 Zee Store. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // State management
+        let products = [
+            {
+                id: 1,
+                name: 'Smartphone X Pro',
+                price: 2500000,
+                image: 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBw8QDw8PEBIPEA8NDw4PDQ8PDw8NDQ8NFREWFhURFRUYHSggGBolGxUWITEiJSkrMC4uFx8zODMsNygtLisBCgoKDg0OGxAQGi0dHR03LS0tKy0rKy0tKy0rKystLS0rLS0rLS0rLS0tLSs3Ky0tKy0rLS0tNystLSs3LS0rK//AABEIAL4BCQMBIgACEQEDEQH/xAAcAAEAAgMBAQEAAAAAAAAAAAAAAwUCBAYBBwj/xABHEAACAQEDBgYOCAYCAwAAAAAAAQIDBAURBiExUXOyEiIzQXKRExUjJTI1U1RhcXSxwtEWgYOSlKHB0gcUNELh8GOCQ1Ki/8QAGQEBAAMBAQAAAAAAAAAAAAAAAAIDBAEF/8QAJREBAAICAgEEAgMBAAAAAAAAAAECAxEEMSESIjJBIzMTUXEU/9oADAMBAAIRAxEAPwD7iAAAAAAAAAAPGUVsv/jONCKnwXhKpJ4Qx1LDSb9+VJRs9TgvCUlwIvU5NRx/M5ayw4MUloSI2nTVxsMX3NuoWHbm1aqPVP5h3zatVHql8zm7zyrsFmnKnVqTc4PCSpU3UjF86b0YmFz5XWC2TdKz1Juok3wKkHTm4rS1jpXqITNmiKYJnTpu3Vq/4fuy+Z478tOqj92XzNTSaV8WjsNnr1n/AOKlUn1RbOeqV08bFEb09t+XdanU7DTgq9bDHsVGm5yUdcm5KMF6ZNY4PDEjWVt7POrHTS1StNJP8k/eR0rLGlGnhFKdSlSqVmtMqrgsW3+X1E0ZD1SrjjUtGxZU3v5pR/FU/wBo+lF7+aUfxdP9pLGRImPXJ/zUa30pvfzSj+Lp/tPVlPfHmdH8XT/aa9+0rTOz1I2SpClaHwexzmk4rjJtaHhisc+DNyxqahT7JJSqKMFUlFcGMqiS4TS5ljid9UoTgrvWkX0ovjzOj+Kp/tPfpPfHmdH8VT/abso58dYQ9UuRgq0vpVe0c8rFCSWlU7RRnP6k+D7y8yayupWyUqTjKjaIZp0akXCaepxejQ8NKeGZs0cCtv1KlQlbIpdlskqDU/7uwurFTjjqz4na2V5cNYruH0VHpjTlik9aT/IyLGMAAAAAAAAAAAAAAAAAAAAAV9+cj9pS30c7ReEW9SbOivzkftKW+igpU8YtaMYvPqfMyu3bdxv1y/OlW3KpLjt51p04t879GOl+sxySqON62TgvRXSxi8zTTTw9B2V+/wAJ6zrTlQm1SlJyjFw4ahi8cIyUs61YpG/kb/DKdntEa9ebk6fJpRVOKbzN6W28McMywxxJTMaUVxX9T6TYYYuKehvB8xUZarC7rf7LaNxlxR0P1lRlou9tv9kr7jKvt6NuplPeMuNDZUtxEEZGd5S48NjR3Ea8Wcntfij2Q24yJIyNWLJoSBaE6Z6iKLJUFcw2KedYdR5gY0ngTyidU28Iivyq8V3hsVvos8CuytXeu8Ngt+JKO1WWfa7yy+BDoR9yJSKy8nDoR9yJS154AAAAAAAAAAAAAAAAAAAAA0L75L7SlvooqTwjjowXVnLy++SW0pb6KCpyUui/TmK7dtvH+Evi9/Ze26rUlKnXqUot8SnSfAUY8yzaXgMh8u7b/PUaForVK9KtPgNVGnKEmng0/wBGcTeKrWarKlUThVpNxkmsP+yx0p8z1MsMhLHVrXhQnCLkqVRVKkkuLFcyx1ttJEtRpRW1vW/R9n8H1sqMt13st/slfcZcWRcVFTlv4st/slfdZX9vRt1KG9X3SGxo7prxkS3vLukdjR3TVjIrtPlswx+OG1FkkWa0ZEkZCJdmG1GRLGRqxkSxkSVWhtRZt05YorVI2KNQKrV228Csyu8VXhsFvotoZ1iVeWK71XhsFvosqxZOnc2bwIdGPuRKRWbwIdGPuRKWMQAAAAAAAAAAAAAAAAAAAAArMoOTp7el7ymjLCGPoLfKHk6e3pe9lJVlhSk9UW168UV27buN8JcRlBlNdVOrKE41asoNxk6S7mmtKWLS6jLJXKm7bRV7DZ1Up1Xi4xqrBtLTwc+H6nxuVpjJrht8FrSnnxwzN482OkmyUnheVm4LxwrrBrNis+clNfCuM9vXp+lrO+L1lTlv4st/slfcZa2V8VFRlt4st/slfcZW226lqXzLukdjR3DTjMnvx91jsaO4acZFdu3oYY/HDbjI2rJQlUeEebS3mS9Zp2eDlKMVpk8P8l3UqRpwUI6Fpet62chDLbXiO2LoU4LO3J9SNedogtC/NmpaLRizTnUJSjXHvta/zcdX6k1KspeC8Xq5yi7KT2JOc4pa+o7CdsURG3XWVcSPq/Urssl3qvDYLfRcU4YJLUvzKrLRd6rw2C30WRDxck726+6+Qo7Knuo2jVurkKOyp7qNosZJAAAAAAAAAAAAAAAAAAAAAFVlCu509tTx9WcpOBwqbjo4Swx1F9f8sKK9NWkl6+Eiis7zIqv29DiRukvkN+/wvm605UZyhCbb4PBhOKb1NyTS9Bt5Jfw5dCuqtWUpyh4GaMIrHS8E3i8MVpWk+rM8Zz1StjBTe9PIRwSWopstvFlv9kr7rLrEpMtfFtv9kr7rORKy0eJaF+PusNjQ3DRizav591hsaG4aMZFdu3o4I/FC6ujiqdR83Ej63pfuMLRaMWzFzUYRhqWMuk87/wB9Bp1K3qJQp16rbZVZmrUqGFSriY0qUpvCKbbIy01iKxuUkG28FznWXBd3BXDlnf66iC57gccJ1Mz1c/8Aj3+o6SEUkksyWZLmLKQ83mcuJj0UeYFTlr4qvDYLfRc4FNlx4pvDYfGi2Hl2nw626k1Z6CawapU009KfBRtEFhmnSptaHTg16uCickoAAAAAAAAAAAAAAAAAAAAAFVlFyUNtS95RWd5joL/XcfVUp7yOcsz4pVk7elw/hLYbMcTzE8INTLEpMtH3tt/stfcZcMpcs/Ftu9lr7jEOXj2yrcoH3WOwobhp2XByWOiOMn6ksTayhfdo7GhuGtZoPsdeSTbjCCzapTXyI27b8c6wxLytadPpx6zX7K20lnb1G5YLmr18HwXCD0zmmlh6FpZ1d13LRoZ0uHPnnLDH6lzEortTfk0xx/cqO68nqlTCVTiR1Pwmjq7BYaVJYQik9fOTRJIonFdPMzcm+Tvpkj1IJGWBJmelLlz4pvDYfGi6KXLrxTeGw+NHYRt06u6f6ehsqW4jbIbIu5w6EPciYkpAAAAAAAAAAAAAAAAAAAAAFbf/ACP2lLfRzNneY6bKDkPtKW+jl7N4JVk7enwo9kp8RiYjEg2aeuRTZZeLbd7LX3GW+JT5Y+Lbd7LX3GIRvHtlq3rYKtavFQi33Ghi9EVxFpZcXLdn8vwsZcKVSK4WGaK4L0LrLar/AGL/AIqW4iOaenVnfpXP/voLIpHbJbl2tSKdQ9RJEgr1owi5yeEVz6/QiktGUEm8KawWt52zk2iDDx75fjDp4okSOUs941W87/JFpZbdLnwf1CLbMvFvRdI9wNWlacTajInplnw9KTLrxTeGwW+i7ZR5deKbw2C34nUbdOysnJw6EPciUhsnJw6EN1Ex1SAAAAAAAAAAAAAAAAAAAAAKzKHkPtKW+jlrM+KdTlFyD6dLfRytm8EqydvV4HwlO2YgFbboKfLHxbbvZa+4y3KjLHxdbvZa+4zsdoZPhLp6y8DZUtxFfeN6QoLDwqjWaCej0t8xr37e7hwKdPwuw0sZvPhjBaEc4k28XnbztvO2zuTJrxCnh8CbR679NqrapVo8Go9EnKDSwjFvSmtRB2CUXnXqelP1MkpwNukmvr5tK6in5PV3GONV6Y2ZFlZyGnCOrD1G7Rpan+hfSrDnvEtukbdKWBrUkbCNdY8PFz28+G2ijy6Xem8Nh8cS2pTKzLtd6bw2HxortGpVxbcOusnJ0+hDdRMQ2Tk6fQhuomOIgAAAAAAAAAAAAAAAAAAAACsyi5B9Olvo5SzeCdXlFyD2lLfRylm8EpydvW4H65TAAi2hT5Y+Lrd7LX3GXGBUZYLvbbvZa+4x9oZPjKK+o91hsaO4jVpwN+9490jsqO4iGnArtHulrw31ir/hTgbdOmeUqZt06ZOsKMmQpwNqnAU6ZsQgaa1eflyPaaJ4o8hEkSNFavNyXgSKvLeWN0Xh6KHxotGyny18VXhsPjR3JWPSzRf3adrZOTp9CG6iYisnJw6EN1EpmXgAAAAAAAAAAAAAAAAAAAACryj/AKd7Slvo5Wy+CdVlH/Tvp095HLWbwSnJ29bgfrn/AFMj3AwTz/4JMCDX08SKjLJd7bd7LX3GXSRUZZx722/2WvuM7HavJPtlleUOPHZUdxGFOBtW+PHhsqW4jynAa8pUyaxwU4G3TiY04GzTiX0oy5cjKnEmjEQiSKJorV5+XI9ij0MxxLqwwZLhUZaeKrw2Hxotmymy0feq8dh8aOZPjKnHbeSHcWTk4dCG6iYhsfJ0+hDdRMY3oAAAAAAAAAAAAAAAAAAAAACryj5B9OnvI5eyrinUZR/076dLfRzVjXFRTk7epwf1ycF8LRm1kyRkkZxiQhqmzGMSoy2Xey3+yV90vFEqctabd2W9LO3ZayS/6snEKMl/Gk9rhxobKjuI9pwJKmEuxSWiVGi16nBEtOBZFVf8mqQU4E8InkIkyRorViyZCKMgeNl9YYMlxmLYbMMSTJewyoyyfeq8fZ/jRaSZUZYy7125c86dOEVrlKpFJdbIZPjLmGd5Id5ZOTp9CG6iYisvgQ6EfciUxvVAAAAAAAAAAAAAAAAAAAAAGpelkVajUpY4dki0paeDLml9TwZxliquMnRrLsdeHhQehr/2g/7ovWd8a9qsVKqsKkITS0cOKlh6tRG1dr8Oecfj6lzESSOHo6y57RWXyUeuXzHaKy+Sj1y+ZGKL55cT9KuKXoPbRZ41ITpya4NSEoS0aGsC07RWXyUeuXzHaOy+Sj/9fMlEKbZtvnKvupY6n8taqVTsVKEY0a9CEq6UFm40I8Zx0NSSeGODwaz2Mcrrt57XRT1Sc4vqazHZ1Mn7HJYSo02lnWKbwevSFcFk8jD8/mTidIzkiXIxywuvzyz/AHn8jL6ZXZ55Z/vP5HWdoLJ5Gn+fzHaCyeRh+fzJxkmFMxEuT+mV2ed0PvS+Ri8sbs87s/338jr+0Nk8jT6mO0Nk8jT6mS/mn+lU4Ky455YXZ53Q+8/kYvK+7fOqH3n8js+0Nk8jDqZ52gsnkafUx/PKueLSfuXFTyvu7BtWiE2v7acalWb9UYxbZDdtorXrV7FGhUp2KE6c51Ky4FSbjLhYuH9uhYRefO20kkn3iuGyeRp/WsUb1KjGCUYxUYrRGKUYr6kctltMaTx4KUncds4noBUuAAAAAAAAAAB//9k=',
+                description: 'Smartphone flagship dengan kamera profesional 108MP, RAM 12GB, dan baterai tahan lama'
+            },
+            {
+                id: 2,
+                name: 'Headphone Wireless',
+                price: 450000,
+                image: 'https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcR7zOHIy8GLU-s9eJKtL1IJo8LAAlW28ZrsxshGtPOoTnwXABUIZR8Lbk1B246XjHy6QIqKsEereExSkzsfcKBtwh4sHcvP1NhEW2g6jNsGl9UMbE-qwi0XkGNwx8bUYrkMfqvqlKp3QA&usqp=CAc',
+                description: 'Headphone nirkabel dengan fitur noise cancellation aktif dan koneksi Bluetooth 5.0'
+            },
+            {
+                id: 3,
+                name: 'Laptop Gaming Pro',
+                price: 12000000,
+                image: 'data:image/jpeg;base64,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',
+                description: 'Laptop gaming dengan GPU RTX 4060, processor Intel i7, dan layar 144Hz'
+            }
+        ];
+
+        let isLoggedIn = false;
+        let currentImage = null;
+
+        // DOM Elements
+        const loginForm = document.getElementById('login-form');
+        const adminPanel = document.getElementById('admin-panel');
+        const addProductForm = document.getElementById('add-product-form');
+        const productForm = document.getElementById('product-form');
+        const productsContainer = document.getElementById('products-container');
+        const imagePreview = document.getElementById('image-preview');
+        const uploadPlaceholder = document.getElementById('upload-placeholder');
+
+        // Event Listeners
+        loginForm.addEventListener('submit', handleLogin);
+        productForm.addEventListener('submit', handleAddProduct);
+
+        // Functions
+        function handleLogin(e) {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            if (username === 'admin' && password === 'admin123') {
+                isLoggedIn = true;
+                updateUI();
+                alert('Login berhasil!');
+            } else {
+                alert('Login gagal. Username: admin, Password: admin123');
+            }
+        }
+
+        function logout() {
+            isLoggedIn = false;
+            updateUI();
+            alert('Logout berhasil!');
+        }
+
+        function showAddProductForm() {
+            addProductForm.classList.remove('hidden');
+        }
+
+        function hideAddProductForm() {
+            addProductForm.classList.add('hidden');
+            productForm.reset();
+            imagePreview.classList.add('hidden');
+            uploadPlaceholder.classList.remove('hidden');
+            currentImage = null;
+        }
+
+        function handleImageUpload(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    currentImage = e.target.result;
+                    imagePreview.src = currentImage;
+                    imagePreview.classList.remove('hidden');
+                    uploadPlaceholder.classList.add('hidden');
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function handleAddProduct(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('product-name').value;
+            const price = parseInt(document.getElementById('product-price').value);
+            const description = document.getElementById('product-description').value;
+
+            const newProduct = {
+                id: Date.now(),
+                name,
+                price,
+                image: currentImage || `https://placeholder-image-service.onrender.com/image/250x180?prompt=${encodeURIComponent(name)}&id=${Date.now()}`,
+                description
+            };
+
+            products.push(newProduct);
+            renderProducts();
+            hideAddProductForm();
+            alert('Produk berhasil ditambahkan!');
+        }
+
+        function deleteProduct(id) {
+            if (confirm('Apakah Anda yakin ingin menghapus produk ini?')) {
+                products = products.filter(product => product.id !== id);
+                renderProducts();
+                alert('Produk berhasil dihapus!');
+            }
+        }
+
+        function formatPrice(price) {
+            return new Intl.NumberFormat('id-ID').format(price);
+        }
+
+        function renderProducts() {
+            productsContainer.innerHTML = '';
+            
+            products.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                productCard.innerHTML = `
+                    <img src="${product.image}" alt="${product.name}" class="product-image">
+                    <div class="product-info">
+                        <h4 class="product-name">${product.name}</h4>
+                        <p class="product-price">Rp ${formatPrice(product.price)}</p>
+                        <p class="product-description">${product.description}</p>
+                        <div class="product-actions">
+                            <button class="btn btn-primary">Beli Sekarang</button>
+                            ${isLoggedIn ? `<button class="btn btn-danger" onclick="deleteProduct(${product.id})">Hapus</button>` : ''}
+                        </div>
+                    </div>
+                `;
+                productsContainer.appendChild(productCard);
+            });
+        }
+
+        function updateUI() {
+            if (isLoggedIn) {
+                loginForm.classList.add('hidden');
+                adminPanel.classList.remove('hidden');
+                
+                // Show delete buttons on existing products
+                document.querySelectorAll('.admin-only').forEach(btn => {
+                    btn.classList.remove('hidden');
+                });
+            } else {
+                loginForm.classList.remove('hidden');
+                adminPanel.classList.add('hidden');
+                addProductForm.classList.add('hidden');
+                
+                // Hide delete buttons
+                document.querySelectorAll('.admin-only').forEach(btn => {
+                    btn.classList.add('hidden');
+                });
+            }
+        }
+
+        // Initial render
+        updateUI();
+        renderProducts();
+    </script>
+</body>
+</html>
